@@ -13,7 +13,7 @@ import urllib.request
 OWNER = "yushuhe"
 REPO = "amazon-sourcing"
 BRANCH = "main"
-MESSAGE = "Fix Vercel deploy: install fastapi and simplify main.py entrypoint"
+MESSAGE = "Fix Vercel API: single-file main.py and production API URL"
 
 
 def api(method: str, path: str, body: dict | None = None) -> dict:

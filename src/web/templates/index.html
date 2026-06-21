@@ -253,7 +253,7 @@
   <div class="container">
     <div class="deploy-notice">
       <strong>云端模式：</strong>API 对接
-      <code>amazon-sourcing-ibyk2yh5r-yu-father.vercel.app</code>；可浏览历史报告。新选品爬取请本地运行
+      <code>amazon-sourcing.vercel.app</code>（勿用预览链接，会 401）。新选品请本地
       <code>python -m src.web</code>。
     </div>
     <div class="card">
@@ -324,10 +324,13 @@
 
     let pollTimer = null;
 
-    // 静态页（EdgeOne 等）走 Vercel API；本地 python -m src.web 走同源
-    const API_BASE = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
-      ? ""
-      : "https://amazon-sourcing-ibyk2yh5r-yu-father.vercel.app";
+    // 生产 API（预览域名 *-xxx.vercel.app 有部署保护会 401，勿用）
+    const PRODUCTION_API = "https://amazon-sourcing.vercel.app";
+    const API_BASE = (() => {
+      if (location.hostname === "localhost" || location.hostname === "127.0.0.1") return "";
+      if (location.hostname === "amazon-sourcing.vercel.app") return "";
+      return PRODUCTION_API;
+    })();
 
     function apiUrl(path) {
       const p = path.startsWith("/") ? path : `/${path}`;
