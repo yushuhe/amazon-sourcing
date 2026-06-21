@@ -1,8 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": null,
   "functions": {
     "main.py": {
-      "excludeFiles": "{src/**,tests/**,output/**,.edgeone/**,.cursor/**,.ralph/**,.pytest_cache/**,scripts/**,docker-compose.yml,requirements-dev.txt}"
+      "maxDuration": 30,
+      "includeFiles": "cloud-functions/data/**",
+      "excludeFiles": "{src/**,tests/**,output/**,.edgeone/**,.cursor/**,.ralph/**,.pytest_cache/**,scripts/**}"
     }
   }
 }

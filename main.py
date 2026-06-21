@@ -1,15 +1,13 @@
-"""FastAPI entrypoint for Vercel and EdgeOne Pages."""
+"""Vercel FastAPI entrypoint."""
 
 from __future__ import annotations
 
-import importlib.util
+import sys
 from pathlib import Path
 
-_api_file = Path(__file__).parent / "cloud-functions" / "api" / "index.py"
-_spec = importlib.util.spec_from_file_location("serverless_api", _api_file)
-if _spec is None or _spec.loader is None:
-    raise RuntimeError(f"Cannot load API from {_api_file}")
+# Make cloud-functions importable without importlib
+sys.path.insert(0, str(Path(__file__).resolve().parent / "cloud-functions"))
 
-_mod = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(_mod)
-app = _mod.app
+from app_core import create_app
+
+app = create_app(api_prefix="/api")
