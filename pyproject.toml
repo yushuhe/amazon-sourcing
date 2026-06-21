@@ -2,9 +2,13 @@
 name = "amazon-sourcing"
 version = "1.0.0"
 requires-python = ">=3.10"
-
-[tool.fastapi]
-entrypoint = "main:app"
+dependencies = [
+    "fastapi>=0.111.0",
+    "pydantic>=2.7.0",
+]
 
 [tool.vercel]
+entrypoint = "main:app"
+
+[tool.fastapi]
 entrypoint = "main:app"
