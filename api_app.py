@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
@@ -53,6 +54,13 @@ def _report_path(filename: str) -> Path:
 
 def create_app(api_prefix: str = "/api") -> FastAPI:
     app = FastAPI(title="Amazon 进货选品 API", version="1.0.0")
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=False,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
     @app.get(_route(api_prefix, "/health"))
     async def health() -> dict[str, str | bool]:

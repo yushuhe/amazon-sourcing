@@ -252,8 +252,9 @@
 
   <div class="container">
     <div class="deploy-notice">
-      <strong>云端模式：</strong>可浏览历史报告；新选品爬取需在本地运行
-      <code>python -m src.web</code>（Playwright 不支持云函数）。
+      <strong>云端模式：</strong>API 对接
+      <code>amazon-sourcing-ibyk2yh5r-yu-father.vercel.app</code>；可浏览历史报告。新选品爬取请本地运行
+      <code>python -m src.web</code>。
     </div>
     <div class="card">
       <h2>搜索配置</h2>
@@ -322,6 +323,16 @@
     const historyList = document.getElementById("historyList");
 
     let pollTimer = null;
+
+    // 静态页（EdgeOne 等）走 Vercel API；本地 python -m src.web 走同源
+    const API_BASE = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+      ? ""
+      : "https://amazon-sourcing-ibyk2yh5r-yu-father.vercel.app";
+
+    function apiUrl(path) {
+      const p = path.startsWith("/") ? path : `/${path}`;
+      return API_BASE ? `${API_BASE.replace(/\/$/, "")}${p}` : p;
+    }
 
     function setStatus(msg, type = "") {
       statusText.textContent = msg;
@@ -440,7 +451,7 @@
     }
 
     async function pollJob(jobId) {
-      const res = await fetch(`/api/jobs/${jobId}`);
+      const res = await fetch(apiUrl(`/api/jobs/${jobId}`));
       const job = await readJsonResponse(res);
 
       if (job.progress_total > 0) {
@@ -486,7 +497,7 @@
       };
 
       try {
-        const res = await fetch("/api/search", {
+        const res = await fetch(apiUrl("/api/search"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
@@ -505,7 +516,7 @@
 
     async function loadHistory() {
       try {
-        const res = await fetch("/api/reports");
+        const res = await fetch(apiUrl("/api/reports"));
         const reports = await readJsonResponse(res);
         if (!reports.length) {
           historyList.innerHTML = '<li class="empty">暂无历史报告</li>';
@@ -523,7 +534,7 @@
         historyList.querySelectorAll(".btn-view").forEach(btn => {
           btn.addEventListener("click", async () => {
             const file = btn.dataset.file;
-            const res = await fetch(`/api/reports/${encodeURIComponent(file)}`);
+            const res = await fetch(apiUrl(`/api/reports/${encodeURIComponent(file)}`));
             const report = await readJsonResponse(res);
             if (!res.ok) throw new Error(apiErrorMessage(report, "加载失败"));
             renderReport(report);
@@ -536,7 +547,7 @@
             const file = btn.dataset.file;
             if (!confirm(`确定删除报告 ${file}？`)) return;
             try {
-              const res = await fetch(`/api/reports/${encodeURIComponent(file)}`, { method: "DELETE" });
+              const res = await fetch(apiUrl(`/api/reports/${encodeURIComponent(file)}`), { method: "DELETE" });
               const data = await readJsonResponse(res);
               if (!res.ok) throw new Error(apiErrorMessage(data, "删除失败"));
               setStatus(`已删除: ${file}`, "success");
