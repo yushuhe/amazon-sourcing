@@ -1,8 +1,9 @@
-"""EdgeOne Cloud Functions API for Amazon sourcing frontend."""
+"""Shared FastAPI API for cloud deployment (Vercel / EdgeOne)."""
 
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -16,9 +17,17 @@ app = FastAPI(title="Amazon 进货选品 API", version="1.0.0")
 REPORTS_DIR = Path(__file__).resolve().parent.parent / "data" / "reports"
 
 SERVERLESS_SEARCH_MSG = (
-    "Amazon 选品爬取依赖 Playwright 浏览器自动化，无法在 EdgeOne 云函数中运行。"
-    "请在本地启动完整服务：python -m src.web"
+    "Amazon 选品爬取依赖 Playwright 浏览器自动化，无法在 Serverless 环境运行。"
+    "请在本地启动完整服务：pip install -r requirements-dev.txt && python -m src.web"
 )
+
+
+def api_path(relative: str) -> str:
+    """EdgeOne strips /api prefix; Vercel keeps the full path."""
+    rel = relative if relative.startswith("/") else f"/{relative}"
+    if os.getenv("VERCEL"):
+        return f"/api{rel}"
+    return rel
 
 
 class SearchRequest(BaseModel):
@@ -45,12 +54,12 @@ def _report_path(filename: str) -> Path:
     return path
 
 
-@app.get("/health")
+@app.get(api_path("/health"))
 async def health() -> dict[str, str]:
-    return {"status": "ok", "runtime": "cloud-functions"}
+    return {"status": "ok", "runtime": "serverless"}
 
 
-@app.get("/reports")
+@app.get(api_path("/reports"))
 async def list_reports() -> list[dict[str, str]]:
     if not REPORTS_DIR.exists():
         return []
@@ -68,7 +77,7 @@ async def list_reports() -> list[dict[str, str]]:
     return reports[:20]
 
 
-@app.get("/reports/{filename}")
+@app.get(api_path("/reports/{filename}"))
 async def get_report(filename: str) -> dict[str, Any]:
     path = _report_path(filename)
     if not path.exists():
@@ -76,17 +85,17 @@ async def get_report(filename: str) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-@app.delete("/reports/{filename}")
+@app.delete(api_path("/reports/{filename}"))
 async def delete_report(filename: str) -> dict[str, Any]:
     raise HTTPException(status_code=403, detail="云端演示环境不支持删除报告，请使用本地服务")
 
 
-@app.post("/search")
+@app.post(api_path("/search"))
 async def start_search(req: SearchRequest) -> None:
     raise HTTPException(status_code=503, detail=SERVERLESS_SEARCH_MSG)
 
 
-@app.get("/jobs/{job_id}")
+@app.get(api_path("/jobs/{job_id}"))
 async def get_job(job_id: str) -> None:
     raise HTTPException(status_code=404, detail="云端环境不支持后台任务，请使用本地服务运行选品")
 

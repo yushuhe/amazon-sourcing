@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "main.py": {
+      "excludeFiles": "{src/**,tests/**,output/**,.edgeone/**,.cursor/**,.ralph/**,.pytest_cache/**,scripts/**,docker-compose.yml,requirements-dev.txt}"
+    }
+  }
+}
