@@ -1,0 +1,13 @@
+{
+  "outputDirectory": "./public",
+  "cloudFunctions": {
+    "mainlandRegions": ["ap-guangzhou"],
+    "overseasRegions": ["ap-tokyo"],
+    "python": {
+      "maxDuration": 60,
+      "includeFiles": [
+        "cloud-functions/data/**"
+      ]
+    }
+  }
+}

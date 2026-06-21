@@ -1,0 +1,571 @@
+{
+  "query": "cup",
+  "marketplace": "amazon.com",
+  "generated_at": "2026-06-21T08:41:55.672826Z",
+  "top_n": 20,
+  "products": [
+    {
+      "asin": "B00OCGUG02",
+      "title": "Hefty Party On Disposable Plastic Cups, Assorted, 16 Ounce, 100 Count",
+      "image_url": "https://m.media-amazon.com/images/I/81uf-BZz2eL._AC_UL320_.jpg",
+      "price": 681.99,
+      "star_rating": 4.8,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B00OCGUG02",
+      "reviews": [],
+      "composite_score": 0.288,
+      "rank": 1,
+      "search_position": 1,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 1 位（Amazon 按销量/热度排序）",
+        "评分 4.8，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $681.99 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B014ORY2Y4",
+      "title": "Hefty Deluxe Clear Plastic Party Cups (9 Ounce, 40 Count)",
+      "image_url": "https://m.media-amazon.com/images/I/71511SK66wL._AC_UL320_.jpg",
+      "price": 424.12,
+      "star_rating": 4.8,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B014ORY2Y4",
+      "reviews": [],
+      "composite_score": 0.288,
+      "rank": 2,
+      "search_position": 1,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 1 位（Amazon 按销量/热度排序）",
+        "评分 4.8，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $424.12 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B08B5B145G",
+      "title": "TILUCK measuring cups and magnetic measuring spoons set, stainless steel measuring cups, 6 double-sided stainless steel measuring spoons & 1 leveler (12)",
+      "image_url": "https://m.media-amazon.com/images/I/71py90OndfL._AC_UL320_.jpg",
+      "price": 1212.89,
+      "star_rating": 4.8,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B08B5B145G",
+      "reviews": [],
+      "composite_score": 0.288,
+      "rank": 3,
+      "search_position": 1,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 1 位（Amazon 按销量/热度排序）",
+        "评分 4.8，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $1212.89 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0DS6JK26N",
+      "title": "YETI Rambler 42 oz Tumbler with Handle and Straw Lid, Travel Mug Water Tumbler, Vacuum Insulated Cup with Handle, Stainless Steel, Big Sky Blue",
+      "image_url": "https://m.media-amazon.com/images/I/610dsuu32vL._AC_UL320_.jpg",
+      "price": 1911.26,
+      "star_rating": 4.7,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0DS6JK26N",
+      "reviews": [],
+      "composite_score": 0.282,
+      "rank": 4,
+      "search_position": 1,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 1 位（Amazon 按销量/热度排序）",
+        "评分 4.7，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $1911.26 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0DZ94VDP9",
+      "title": "Simple Modern Kids Water Bottle with Straw Lid | 14oz Insulated Stainless Steel Kids Tumbler & Spill Proof Toddler Cup for School, Girls, Boys | Summit | Farm Animals",
+      "image_url": "https://m.media-amazon.com/images/I/51tj7cyv+jL._AC_UL320_.jpg",
+      "price": 1212.89,
+      "star_rating": 4.6,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0DZ94VDP9",
+      "reviews": [],
+      "composite_score": 0.276,
+      "rank": 5,
+      "search_position": 1,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 1 位（Amazon 按销量/热度排序）",
+        "评分 4.6，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $1212.89 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0GDZGBZZL",
+      "title": "Ginkgo 50 Pack 16 oz Clear Plastic Cups with Lids and Straws, Leak-Proof & Sturdy Iced Coffee Cups with lids, Disposable To Go Cups for Dirty Soda, Lemonade, Smoothies & Cold Drinks",
+      "image_url": "https://m.media-amazon.com/images/I/819xW1goGsL._AC_UL320_.jpg",
+      "price": 848.84,
+      "star_rating": 4.9,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0GDZGBZZL",
+      "reviews": [],
+      "composite_score": 0.294,
+      "rank": 6,
+      "search_position": 2,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 2 位（Amazon 按销量/热度排序）",
+        "评分 4.9，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $848.84 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0D6SNKHR7",
+      "title": "Amazon Basics Disposable Plastic To-Go Cups and Lids, Mini, 2oz, 50 Count, BPA Free, for Condiment, Salad Dressing, Sauces, Jello Shots",
+      "image_url": "https://m.media-amazon.com/images/I/7164nTxrbqL._AC_UL320_.jpg",
+      "price": 270.0,
+      "star_rating": 4.8,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0D6SNKHR7",
+      "reviews": [],
+      "composite_score": 0.288,
+      "rank": 7,
+      "search_position": 2,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 2 位（Amazon 按销量/热度排序）",
+        "评分 4.8，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $270.00 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B08VK6DTQG",
+      "title": "Hefty Party On Disposable Plastic Cups, Marine Blue, 18 Ounce, 120 Count",
+      "image_url": "https://m.media-amazon.com/images/I/81J+FRvZooL._AC_UL320_.jpg",
+      "price": 1064.85,
+      "star_rating": 4.8,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B08VK6DTQG",
+      "reviews": [],
+      "composite_score": 0.288,
+      "rank": 8,
+      "search_position": 2,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 2 位（Amazon 按销量/热度排序）",
+        "评分 4.8，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $1064.85 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B09DNBZ25M",
+      "title": "NUK Fun Grips Hard Spout Sippy Cup, 10 oz. | Easy to Hold, BPA Free, Spill Proof Toddler Cup, 4pk",
+      "image_url": "https://m.media-amazon.com/images/I/71ldbicIxWL._AC_UL320_.jpg",
+      "price": 697.16,
+      "star_rating": 4.7,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B09DNBZ25M",
+      "reviews": [],
+      "composite_score": 0.282,
+      "rank": 9,
+      "search_position": 2,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 2 位（Amazon 按销量/热度排序）",
+        "评分 4.7，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $697.16 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0DB85L776",
+      "title": "Coffee Cups 12 oz 300 Pack, 12 oz Paper Cups, Hot Beverage Drinking Cups, White Paper Hot Disposable Coffee Cups, Suitable for Party, Picnic, Travel, and Events",
+      "image_url": "https://m.media-amazon.com/images/I/61rp6L9lQwL._AC_UL320_.jpg",
+      "price": 1419.19,
+      "star_rating": 4.3,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0DB85L776",
+      "reviews": [],
+      "composite_score": 0.258,
+      "rank": 10,
+      "search_position": 2,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 2 位（Amazon 按销量/热度排序）",
+        "评分 4.3，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $1419.19 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0D6SJWPHL",
+      "title": "Amazon Basics Small Disposable Clear Plastic Cups, 9oz, 100 Count",
+      "image_url": "https://m.media-amazon.com/images/I/71HnXn7+FiL._AC_UL320_.jpg",
+      "price": 311.26,
+      "star_rating": 4.7,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0D6SJWPHL",
+      "reviews": [],
+      "composite_score": 0.282,
+      "rank": 11,
+      "search_position": 3,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 3 位（Amazon 按销量/热度排序）",
+        "评分 4.7，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $311.26 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0D7HRDLSW",
+      "title": "Dealusy 100 Pack - 16 oz Clear Plastic Cups with Lids, Sturdy & Food Safe Iced Coffee Cups with lids, Disposable Plastic Smoothie Cups for Cold Drinks, Sip Lids",
+      "image_url": "https://m.media-amazon.com/images/I/71Gcq1sDM5L._AC_UL320_.jpg",
+      "price": 1576.94,
+      "star_rating": 4.7,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0D7HRDLSW",
+      "reviews": [],
+      "composite_score": 0.282,
+      "rank": 12,
+      "search_position": 3,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 3 位（Amazon 按销量/热度排序）",
+        "评分 4.7，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $1576.94 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0CB6ZJ1TT",
+      "title": "Blue Sky 2 Oz Clear PET Cups - 40 Count, Durable Plastic Shot Cups for Parties and Events",
+      "image_url": "https://m.media-amazon.com/images/I/61Ag5GeDI1L._AC_UL320_.jpg",
+      "price": 256.05,
+      "star_rating": 4.7,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0CB6ZJ1TT",
+      "reviews": [],
+      "composite_score": 0.282,
+      "rank": 13,
+      "search_position": 3,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 3 位（Amazon 按销量/热度排序）",
+        "评分 4.7，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $256.05 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B071G6JW5Q",
+      "title": "Fit Meal Prep 100 Pack 24 oz Clear Plastic Cups with Flat Lids, Disposable Iced Coffee Cups, BPA Free Premium Crystal Smoothie Cup for Party, Lemonade Stand, Cold Drinks, Juice, Milkshake",
+      "image_url": "https://m.media-amazon.com/images/I/617B9MSRQAL._AC_UL320_.jpg",
+      "price": 1574.52,
+      "star_rating": 4.7,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B071G6JW5Q",
+      "reviews": [],
+      "composite_score": 0.282,
+      "rank": 14,
+      "search_position": 3,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 3 位（Amazon 按销量/热度排序）",
+        "评分 4.7，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $1574.52 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B00O8ZTWQQ",
+      "title": "Libbey Heavy Base Drinking Glasses Set of 8, 15.5 Oz Elegant, Weighted Clear Water Glasses, Dishwasher Safe Glass Cups Set for Parties, Birthdays",
+      "image_url": "https://m.media-amazon.com/images/I/61lrLVk7q4L._AC_UL320_.jpg",
+      "price": 1890.03,
+      "star_rating": 4.6,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B00O8ZTWQQ",
+      "reviews": [],
+      "composite_score": 0.276,
+      "rank": 15,
+      "search_position": 3,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 3 位（Amazon 按销量/热度排序）",
+        "评分 4.6，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $1890.03 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0D6SMHQKN",
+      "title": "Amazon Basics Sturdy Disposable Plastic Party Cups for Cold Drinks, Red, 18oz, 50 Count, BPA-Free",
+      "image_url": "https://m.media-amazon.com/images/I/71mjqdF5MbL._AC_UL320_.jpg",
+      "price": 290.03,
+      "star_rating": 4.7,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0D6SMHQKN",
+      "reviews": [],
+      "composite_score": 0.282,
+      "rank": 16,
+      "search_position": 4,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 4 位（Amazon 按销量/热度排序）",
+        "评分 4.7，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $290.03 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0CQJZ98QX",
+      "title": "JOLLY CHEF 50 Pack 5 oz Plastic Dessert Cups with Lids and Spoons, Yogurt Parfait Appetizer Cup for Party, Clear Mini Dessert Shooter for Pudding Fruit Trifle Ice Cream",
+      "image_url": "https://m.media-amazon.com/images/I/61yiZZ5h4xL._AC_UL320_.jpg",
+      "price": 909.52,
+      "star_rating": 4.7,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0CQJZ98QX",
+      "reviews": [],
+      "composite_score": 0.282,
+      "rank": 17,
+      "search_position": 4,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 4 位（Amazon 按销量/热度排序）",
+        "评分 4.7，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $909.52 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0DJ33L82L",
+      "title": "Espresso Cups Set of 2 - 4 Oz Espresso Shot Glass with Handle Double Spout Cups Clear Glass Milk Cup Espresso Accessories Great for Making Coffee Desserts Salad Dressings",
+      "image_url": "https://m.media-amazon.com/images/I/71veXiASiiL._AC_UL320_.jpg",
+      "price": 363.44,
+      "star_rating": 4.6,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0DJ33L82L",
+      "reviews": [],
+      "composite_score": 0.276,
+      "rank": 18,
+      "search_position": 4,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 4 位（Amazon 按销量/热度排序）",
+        "评分 4.6，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $363.44 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0CLHGD922",
+      "title": "NUK Learner Straw Cup 10oz - Toddler Cup with Soft Straw for Easy Drinking Suitable for Ages 8 Months and Up",
+      "image_url": "https://m.media-amazon.com/images/I/71sNHqapf7L._AC_UL320_.jpg",
+      "price": 911.34,
+      "star_rating": 4.5,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0CLHGD922",
+      "reviews": [],
+      "composite_score": 0.27,
+      "rank": 19,
+      "search_position": 4,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 4 位（Amazon 按销量/热度排序）",
+        "评分 4.5，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $911.34 偏高，资金占用和退货成本更大"
+      ]
+    },
+    {
+      "asin": "B0BPXVBB5V",
+      "title": "DWTS DANWEITESI Glass Cups with Lids and Straws,24 oz Smoothie Cup with Lid and Straw-Boba Mason Jar,Matcha Cup Wide Mouth Reusable Drinking Glasses,Iced Coffee Cups Glass,Vasos De Vidrio【4 Pack】",
+      "image_url": "https://m.media-amazon.com/images/I/713TW9GOSXL._AC_UL320_.jpg",
+      "price": 1334.24,
+      "star_rating": 4.4,
+      "review_count": null,
+      "bsr": null,
+      "bsr_category": null,
+      "brand": null,
+      "bullet_points": [],
+      "prime_eligible": false,
+      "product_url": "https://www.amazon.com/dp/B0BPXVBB5V",
+      "reviews": [],
+      "composite_score": 0.264,
+      "rank": 20,
+      "search_position": 4,
+      "estimated_monthly_sales": null,
+      "import_score": 75,
+      "import_verdict": "强烈推荐进货",
+      "import_reasons": [
+        "搜索热度排名第 4 位（Amazon 按销量/热度排序）",
+        "评分 4.4，口碑尚可"
+      ],
+      "import_risks": [
+        "单价 $1334.24 偏高，资金占用和退货成本更大"
+      ]
+    }
+  ],
+  "total_candidates_found": 279,
+  "total_candidates_analyzed": 279,
+  "summary": "从 279 个同类商品中， 按 Amazon 搜索热度（销量排序）直接排出前 20 名，无需逐个打开详情页。 榜首：Hefty Party On Disposable Plastic Cups, Assorted, 16 Ounce, …（强烈推荐进货，进货指数 75） 价格带 $256.05 ~ $1911.26。 其中 20 款达到「强烈推荐进货」标准。"
+}

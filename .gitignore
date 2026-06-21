@@ -25,3 +25,7 @@ output/*
 .DS_Store
 Thumbs.db
 *.log
+
+# EdgeOne build artifacts
+.edgeone/
+.edgeone/.token
