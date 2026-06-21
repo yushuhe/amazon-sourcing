@@ -1,0 +1,39 @@
+search:
+  result_item: '[data-component-type="s-search-result"][data-asin]:not([data-asin=""])'
+  title: 'h2 a span, h2 span'
+  price_offscreen: '.a-price:not(.a-text-price) .a-offscreen'
+  price_whole: '.a-price:not(.a-text-price) .a-price-whole'
+  price_fraction: '.a-price:not(.a-text-price) .a-price-fraction'
+  monthly_sales: 'span.a-size-base.a-color-secondary'
+  rating: 'span.a-icon-alt'
+  review_count: 'span.a-size-base.s-underline-text'
+  image: 'img.s-image'
+  next_page: 'a.s-pagination-next:not(.s-pagination-disabled)'
+
+product:
+  title: '#productTitle, #title span'
+  price_offscreen: '#corePriceDisplay_desktop_feature_div .priceToPay .a-offscreen, #corePriceDisplay_desktop_feature_div .a-price:not(.a-text-price) .a-offscreen, .priceToPay .a-offscreen, #price_inside_buybox .a-offscreen, #corePrice_feature_div .a-offscreen, #apex_desktop .a-price:not(.a-text-price) .a-offscreen, #tp_price_block_total_price_ingress .a-offscreen'
+  price_whole: '#corePriceDisplay_desktop_feature_div .priceToPay .a-price-whole, .priceToPay .a-price-whole, #price_inside_buybox .a-price-whole'
+  price_fraction: '#corePriceDisplay_desktop_feature_div .priceToPay .a-price-fraction, .priceToPay .a-price-fraction, #price_inside_buybox .a-price-fraction'
+  rating: '#acrPopover span.a-icon-alt, #averageCustomerReviews span.a-icon-alt'
+  review_count: '#acrCustomerReviewText, #acrCustomerReviewLink span'
+  main_image: '#landingImage, #imgBlkFront, #main-image'
+  bullet_points: '#feature-bullets ul li span.a-list-item'
+  bsr_section: '#detailBulletsWrapper_feature_div, #productDetails_detailBullets_sections1, #prodDetails'
+  prime_badge: '#primeBadge_feature_div, .a-icon-prime'
+
+reviews:
+  review_item: '[data-hook="review"], div.review'
+  review_id_attr: data-hook
+  star: '[data-hook="review-star-rating"] span, [data-hook="cmps-review-star-rating"] span'
+  title: '[data-hook="review-title"] span:not(.a-icon-alt)'
+  body: '[data-hook="review-body"] span'
+  date: '[data-hook="review-date"]'
+  verified: '[data-hook="avp-badge"]'
+  helpful: '[data-hook="helpful-vote-statement"]'
+
+captcha_indicators:
+  - 'form[action*="validateCaptcha"]'
+  - '#captchacharacters'
+  - 'input[name="captchacharacters"]'
+  - 'h4:has-text("Type the characters")'

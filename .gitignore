@@ -1,0 +1,27 @@
+# Secrets & local config (never commit)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+credentials.json
+secrets/
+**/secrets.*
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+playwright/.cache/
+
+# Generated reports & runtime output
+output/*
+!output/.gitkeep
+
+# OS / IDE (optional local)
+.DS_Store
+Thumbs.db
+*.log

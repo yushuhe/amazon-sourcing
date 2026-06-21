@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon 进货选品</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface2: #243044;
+      --border: #2d3a4f;
+      --text: #e8edf4;
+      --muted: #8b9cb3;
+      --accent: #ff9900;
+      --accent-hover: #e88b00;
+      --success: #3dd68c;
+      --danger: #f87171;
+      --radius: 10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    header {
+      background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+    }
+    header h1 { font-size: 1.5rem; font-weight: 600; }
+    header p { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card h2 { font-size: 1.1rem; margin-bottom: 1rem; color: var(--accent); }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr) auto;
+      gap: 1rem;
+      align-items: end;
+    }
+    @media (max-width: 900px) {
+      .form-grid { grid-template-columns: 1fr 1fr; }
+      .form-grid .btn-primary { grid-column: 1 / -1; }
+    }
+    label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 0.35rem; }
+    .hint { display: block; font-size: 0.7rem; color: var(--muted); margin-top: 0.25rem; opacity: 0.85; }
+    input {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+    input:focus { outline: none; border-color: var(--accent); }
+    .btn-primary {
+      padding: 0.65rem 1.5rem;
+      background: var(--accent);
+      color: #111;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    .btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .progress-bar {
+      height: 6px;
+      background: var(--surface2);
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 1rem 0 0.5rem;
+      display: none;
+    }
+    .progress-bar.active { display: block; }
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .status-text { font-size: 0.85rem; color: var(--muted); min-height: 1.25rem; }
+    .status-text.error { color: var(--danger); }
+    .status-text.success { color: var(--success); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1rem;
+    }
+    .product-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-header {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .rank-badge {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      background: var(--accent);
+      color: #111;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .product-img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .product-info { flex: 1; min-width: 0; }
+    .product-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .product-title a { color: var(--text); text-decoration: none; }
+    .product-title a:hover { color: var(--accent); }
+    .meta { font-size: 0.8rem; color: var(--muted); margin-top: 0.35rem; }
+    .meta span { margin-right: 0.75rem; }
+    .score { color: var(--accent); font-weight: 600; }
+    .reviews-section {
+      border-top: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+    }
+    .reviews-section h4 { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; }
+    .review-item {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .review-item:last-child { border-bottom: none; }
+    .review-stars { color: var(--accent); }
+    .review-body {
+      color: var(--muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-top: 0.2rem;
+    }
+    .history-list { list-style: none; }
+    .history-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+    .history-list li:last-child { border-bottom: none; }
+    .history-actions { display: flex; gap: 0.4rem; flex-shrink: 0; }
+    .history-list button {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+    .history-list button:hover { border-color: var(--accent); color: var(--accent); }
+    .history-list button.btn-delete:hover { border-color: var(--danger); color: var(--danger); }
+    .empty { text-align: center; color: var(--muted); padding: 2rem; font-size: 0.9rem; }
+    .summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--accent);
+      padding: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .compare-wrap { overflow-x: auto; margin-bottom: 1.5rem; }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    .compare-table th, .compare-table td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.6rem;
+      text-align: left;
+    }
+    .compare-table th { background: var(--surface2); color: var(--muted); }
+    .compare-table tr:hover td { background: rgba(255,153,0,0.05); }
+    .verdict-strong { color: var(--success); font-weight: 600; }
+    .verdict-ok { color: var(--accent); }
+    .verdict-warn { color: #fbbf24; }
+    .verdict-bad { color: var(--danger); }
+    .reasons { padding: 0.75rem 1rem; font-size: 0.8rem; border-top: 1px solid var(--border); }
+    .reasons li { margin: 0.25rem 0; list-style: none; }
+    .reasons .pro { color: var(--success); }
+    .reasons .con { color: var(--danger); }
+    .verdict-tag {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .verdict-tag.strong { background: rgba(61,214,140,0.15); color: var(--success); }
+    .verdict-tag.ok { background: rgba(255,153,0,0.15); color: var(--accent); }
+    .verdict-tag.warn { background: rgba(251,191,36,0.15); color: #fbbf24; }
+    .verdict-tag.bad { background: rgba(248,113,113,0.15); color: var(--danger); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Amazon 进货选品</h1>
+    <p>按上月销量排名 · 不展示价格（请直接在 Amazon 查看）</p>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>搜索配置</h2>
+      <form id="searchForm" class="form-grid">
+        <div>
+          <label for="keyword">商品类别 / 关键词</label>
+          <input id="keyword" name="keyword" placeholder="例如 cup、wireless earbuds" required />
+          <small class="hint">输入你要进货的品类，系统会扫描 Amazon 同类商品</small>
+        </div>
+        <div>
+          <label for="top_n">品类内取前 N 名</label>
+          <input id="top_n" name="top_n" type="number" value="20" min="1" max="50" />
+          <small class="hint">最终按 BSR 销量输出前 N 名</small>
+        </div>
+        <div>
+          <label for="max_reviews">评论数（可选）</label>
+          <input id="max_reviews" name="max_reviews" type="number" value="0" min="0" max="30" />
+          <small class="hint">仅「补充详情」>0 时生效，0=不抓评论</small>
+        </div>
+        <div>
+          <label for="enrich_details">补充详情</label>
+          <input id="enrich_details" name="enrich_details" type="number" value="0" min="0" max="10" />
+          <small class="hint">0=快速模式；设 3 则仅前 3 名打开详情页</small>
+        </div>
+        <div>
+          <label for="pages">扫描页数</label>
+          <input id="pages" name="pages" type="number" value="8" min="1" max="10" />
+          <small class="hint">只翻搜索页，不逐个打开商品</small>
+        </div>
+        <button type="submit" class="btn-primary" id="submitBtn">开始选品</button>
+      </form>
+      <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p class="status-text" id="statusText"></p>
+    </div>
+
+    <div class="card" id="resultsCard" style="display:none">
+      <h2>选品结果</h2>
+      <div id="summaryBox" class="summary-box" style="display:none"></div>
+      <div class="compare-wrap" id="compareWrap" style="display:none">
+        <table class="compare-table" id="compareTable"></table>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+    <div class="card">
+      <h2>历史报告</h2>
+      <ul class="history-list" id="historyList">
+        <li class="empty">加载中...</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("searchForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const statusText = document.getElementById("statusText");
+    const progressBar = document.getElementById("progressBar");
+    const progressFill = document.getElementById("progressFill");
+    const resultsCard = document.getElementById("resultsCard");
+    const summaryBox = document.getElementById("summaryBox");
+    const compareWrap = document.getElementById("compareWrap");
+    const compareTable = document.getElementById("compareTable");
+    const productsGrid = document.getElementById("productsGrid");
+    const historyList = document.getElementById("historyList");
+
+    let pollTimer = null;
+
+    function setStatus(msg, type = "") {
+      statusText.textContent = msg;
+      statusText.className = "status-text" + (type ? " " + type : "");
+    }
+
+    function verdictClass(v) {
+      if (!v) return "warn";
+      if (v.includes("强烈")) return "strong";
+      if (v.includes("可考虑")) return "ok";
+      if (v.includes("谨慎")) return "warn";
+      return "bad";
+    }
+
+    function renderReport(report) {
+      if (!report || !report.products || report.products.length === 0) {
+        productsGrid.innerHTML = '<p class="empty">未找到商品，请增加扫描页数或更换关键词</p>';
+        resultsCard.style.display = "block";
+        return;
+      }
+
+      if (report.summary) {
+        summaryBox.textContent = report.summary;
+        summaryBox.style.display = "block";
+      }
+
+      compareTable.innerHTML = `
+        <thead><tr>
+          <th>#</th><th>商品</th><th>上月销量</th>
+          <th>BSR</th><th>评分</th><th>评论</th><th>进货指数</th><th>结论</th>
+        </tr></thead>
+        <tbody>${report.products.map(p => `
+          <tr>
+            <td>${p.rank}</td>
+            <td>${escapeHtml((p.title || p.asin).slice(0, 45))}</td>
+            <td>${escapeHtml(p.monthly_sales_label || (p.monthly_sales ? p.monthly_sales+'+' : '-'))}</td>
+            <td>${p.bsr != null ? '#'+p.bsr.toLocaleString() : '-'}</td>
+            <td>${p.star_rating ?? '-'}</td>
+            <td>${p.review_count != null ? p.review_count.toLocaleString() : '-'}</td>
+            <td>${p.import_score ?? '-'}</td>
+            <td class="verdict-${verdictClass(p.import_verdict)}">${escapeHtml(p.import_verdict || '-')}</td>
+          </tr>
+        `).join('')}</tbody>`;
+      compareWrap.style.display = "block";
+
+      productsGrid.innerHTML = report.products.map(p => `
+        <div class="product-card">
+          <div class="product-header">
+            <div class="rank-badge">${p.rank ?? "-"}</div>
+            ${p.image_url ? `<img class="product-img" src="${p.image_url}" alt="" loading="lazy" />` : ""}
+            <div class="product-info">
+              <span class="verdict-tag ${verdictClass(p.import_verdict)}">${escapeHtml(p.import_verdict || '')}</span>
+              <div class="product-title">
+                <a href="${p.product_url || '#'}" target="_blank" rel="noopener">${escapeHtml(p.title || p.asin)}</a>
+              </div>
+              <div class="meta">
+                ${p.star_rating != null ? `<span>⭐ ${p.star_rating}</span>` : ""}
+                ${p.review_count != null ? `<span>${p.review_count.toLocaleString()} 评论</span>` : ""}
+                ${p.bsr != null ? `<span>BSR #${p.bsr.toLocaleString()}</span>` : ""}
+                ${p.monthly_sales_label ? `<span>${escapeHtml(p.monthly_sales_label)}</span>` : (p.monthly_sales ? `<span>上月 ${p.monthly_sales}+ 件</span>` : '')}
+                <span class="score">进货指数 ${p.import_score ?? "-"}</span>
+              </div>
+            </div>
+          </div>
+          ${(p.import_reasons && p.import_reasons.length) ? `
+            <ul class="reasons">
+              ${p.import_reasons.map(r => `<li class="pro">✅ ${escapeHtml(r)}</li>`).join('')}
+              ${(p.import_risks || []).map(r => `<li class="con">⚠️ ${escapeHtml(r)}</li>`).join('')}
+            </ul>
+          ` : ''}
+          ${(p.reviews && p.reviews.length) ? `
+            <div class="reviews-section">
+              <h4>买家评论摘录</h4>
+              ${p.reviews.slice(0, 3).map(r => `
+                <div class="review-item">
+                  <span class="review-stars">${"★".repeat(Math.round(r.star || 0))}</span>
+                  <strong>${escapeHtml(r.title || "")}</strong>
+                  <div class="review-body">${escapeHtml(r.body || "")}</div>
+                </div>
+              `).join("")}
+            </div>
+          ` : ""}
+        </div>
+      `).join("");
+      resultsCard.style.display = "block";
+    }
+
+    function renderProducts(products) {
+      renderReport({ products, summary: null });
+    }
+
+    function escapeHtml(str) {
+      const d = document.createElement("div");
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    async function pollJob(jobId) {
+      const res = await fetch(`/api/jobs/${jobId}`);
+      const job = await res.json();
+
+      if (job.progress_total > 0) {
+        progressBar.classList.add("active");
+        const pct = Math.round((job.progress_current / job.progress_total) * 100);
+        progressFill.style.width = pct + "%";
+      }
+
+      setStatus(job.message || job.status);
+
+      if (job.status === "completed") {
+        clearInterval(pollTimer);
+        submitBtn.disabled = false;
+        progressFill.style.width = "100%";
+        setStatus("选品完成！", "success");
+        if (job.report) renderReport(job.report);
+        loadHistory();
+        return;
+      }
+
+      if (job.status === "failed") {
+        clearInterval(pollTimer);
+        submitBtn.disabled = false;
+        progressBar.classList.remove("active");
+        setStatus("失败: " + (job.error || "未知错误"), "error");
+      }
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      progressBar.classList.add("active");
+      progressFill.style.width = "0%";
+      setStatus("提交任务中...");
+      resultsCard.style.display = "none";
+
+      const body = {
+        keyword: document.getElementById("keyword").value.trim(),
+        top_n: parseInt(document.getElementById("top_n").value, 10),
+        max_reviews: parseInt(document.getElementById("max_reviews").value, 10),
+        pages: parseInt(document.getElementById("pages").value, 10),
+        enrich_details: parseInt(document.getElementById("enrich_details").value, 10),
+      };
+
+      try {
+        const res = await fetch("/api/search", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        const job = await res.json();
+        if (!res.ok) throw new Error(job.detail || "请求失败");
+        setStatus("任务已启动，采集中（可能需要数分钟）...");
+        pollTimer = setInterval(() => pollJob(job.job_id), 2000);
+        pollJob(job.job_id);
+      } catch (err) {
+        submitBtn.disabled = false;
+        progressBar.classList.remove("active");
+        setStatus(err.message, "error");
+      }
+    });
+
+    async function loadHistory() {
+      try {
+        const res = await fetch("/api/reports");
+        const reports = await res.json();
+        if (!reports.length) {
+          historyList.innerHTML = '<li class="empty">暂无历史报告</li>';
+          return;
+        }
+        historyList.innerHTML = reports.map(r => `
+          <li>
+            <span>${escapeHtml(r.filename)}</span>
+            <div class="history-actions">
+              <button type="button" class="btn-view" data-file="${escapeHtml(r.filename)}">查看</button>
+              <button type="button" class="btn-delete" data-file="${escapeHtml(r.filename)}">删除</button>
+            </div>
+          </li>
+        `).join("");
+        historyList.querySelectorAll(".btn-view").forEach(btn => {
+          btn.addEventListener("click", async () => {
+            const file = btn.dataset.file;
+            const res = await fetch(`/api/reports/${encodeURIComponent(file)}`);
+            const report = await res.json();
+            if (!res.ok) throw new Error(report.detail || "加载失败");
+            renderReport(report);
+            setStatus(`已加载历史报告: ${file}`, "success");
+            window.scrollTo({ top: resultsCard.offsetTop - 20, behavior: "smooth" });
+          });
+        });
+        historyList.querySelectorAll(".btn-delete").forEach(btn => {
+          btn.addEventListener("click", async () => {
+            const file = btn.dataset.file;
+            if (!confirm(`确定删除报告 ${file}？`)) return;
+            try {
+              const res = await fetch(`/api/reports/${encodeURIComponent(file)}`, { method: "DELETE" });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.detail || "删除失败");
+              setStatus(`已删除: ${file}`, "success");
+              loadHistory();
+            } catch (err) {
+              setStatus(err.message, "error");
+            }
+          });
+        });
+      } catch {
+        historyList.innerHTML = '<li class="empty">加载失败</li>';
+      }
+    }
+
+    loadHistory();
+  </script>
+</body>
+</html>

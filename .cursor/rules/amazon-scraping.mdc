@@ -1,0 +1,12 @@
+---
+description: Amazon scraping conventions for amazon-sourcing project
+globs: amazon-sourcing/**/*
+---
+
+# Amazon Scraping Rules
+
+- CSS selectors live in `config/selectors.yaml` only — never hardcode in scrapers
+- Use `safe_goto()` for all page loads; respect REQUEST_DELAY settings
+- On captcha/selector failures, append to `.ralph/guardrails.md`
+- Run `pytest tests/` after selector changes
+- Do not commit `.env` or proxy credentials
