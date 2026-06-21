@@ -251,9 +251,13 @@
   </header>
 
   <div class="container">
-    <div class="deploy-notice">
-      <strong>云端模式：</strong>历史报告走当前站点 API；新选品请本地
-      <code>python -m src.web</code>。Vercel 预览链接会 401，请用生产域名或本页 EdgeOne 地址。
+    <div class="deploy-notice" id="deployNotice">
+      <strong>云端查看模式：</strong>本页只能<strong>查看历史报告</strong>，无法在云端爬取 Amazon。
+      <ol style="margin:0.5rem 0 0 1.2rem;padding:0">
+        <li>本地运行 <code>python -m src.web</code> 完成选品</li>
+        <li>点击「发布到 EdgeOne」或运行 <code>python scripts/publish_to_edgeone.py</code></li>
+        <li>刷新本页，在下方「历史报告」中查看</li>
+      </ol>
     </div>
     <div class="card">
       <h2>搜索配置</h2>
@@ -284,6 +288,7 @@
           <small class="hint">只翻搜索页，不逐个打开商品</small>
         </div>
         <button type="submit" class="btn-primary" id="submitBtn">开始选品</button>
+        <button type="button" class="btn-primary" id="publishBtn" style="display:none;background:#2563eb;margin-left:0.5rem">发布到 EdgeOne</button>
       </form>
       <div class="progress-bar" id="progressBar">
         <div class="progress-fill" id="progressFill"></div>
@@ -311,6 +316,8 @@
   <script>
     const form = document.getElementById("searchForm");
     const submitBtn = document.getElementById("submitBtn");
+    const publishBtn = document.getElementById("publishBtn");
+    const deployNotice = document.getElementById("deployNotice");
     const statusText = document.getElementById("statusText");
     const progressBar = document.getElementById("progressBar");
     const progressFill = document.getElementById("progressFill");
@@ -322,6 +329,33 @@
     const historyList = document.getElementById("historyList");
 
     let pollTimer = null;
+
+    const IS_LOCAL = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    const IS_CLOUD = !IS_LOCAL;
+
+    if (IS_LOCAL) {
+      publishBtn.style.display = "inline-block";
+      deployNotice.innerHTML = "<strong>本地选品模式：</strong>完成后点击「发布到 EdgeOne」，即可在云端页面查看报告。";
+    } else {
+      submitBtn.disabled = true;
+      submitBtn.title = "云端无法运行 Playwright，请在本地选品后发布";
+      form.querySelectorAll("input").forEach(el => { el.disabled = true; });
+    }
+
+    publishBtn?.addEventListener("click", async () => {
+      publishBtn.disabled = true;
+      setStatus("正在同步报告并部署到 EdgeOne（约 1–2 分钟）...");
+      try {
+        const res = await fetch(apiUrl("/api/publish-edgeone"), { method: "POST" });
+        const data = await readJsonResponse(res);
+        if (!res.ok) throw new Error(apiErrorMessage(data));
+        setStatus(data.message + (data.deploy_url ? " — " + data.deploy_url : ""), "success");
+      } catch (err) {
+        setStatus(err.message, "error");
+      } finally {
+        publishBtn.disabled = false;
+      }
+    });
 
     // 生产 API：EdgeOne / Vercel 生产域名走同源；其它静态托管才回退到 Vercel
     const PRODUCTION_API = "https://amazon-sourcing.vercel.app";
@@ -485,6 +519,10 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      if (IS_CLOUD) {
+        setStatus("云端无法爬取，请本地 python -m src.web 选品后发布到 EdgeOne", "error");
+        return;
+      }
       submitBtn.disabled = true;
       progressBar.classList.add("active");
       progressFill.style.width = "0%";

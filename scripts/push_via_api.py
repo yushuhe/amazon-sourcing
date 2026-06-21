@@ -13,7 +13,7 @@ import urllib.request
 OWNER = "yushuhe"
 REPO = "amazon-sourcing"
 BRANCH = "main"
-MESSAGE = "Fix Vercel: use api/index.py entrypoint and EdgeOne same-origin API"
+MESSAGE = "Add local-to-EdgeOne report publish workflow"
 
 
 def api(method: str, path: str, body: dict | None = None) -> dict:

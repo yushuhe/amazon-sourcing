@@ -1,5 +1,3 @@
-"""Compatibility shim; Vercel entrypoint is api/index.py."""
+"""Legacy shim; do not export app to avoid duplicate Vercel entrypoints."""
 
-from api.index import app
-
-__all__ = ["app"]
+__all__: list[str] = []

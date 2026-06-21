@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
+import subprocess
 import threading
 import uuid
 from datetime import datetime, timezone
@@ -123,6 +125,12 @@ async def _execute_job(job_id: str, req: SearchRequest) -> None:
             json_path=str(json_path),
             md_path=str(md_path),
         )
+        try:
+            from src.service.cloud_sync import sync_report_to_cloud
+
+            sync_report_to_cloud(json_path)
+        except OSError:
+            pass
     except Exception as exc:
         _update_job(
             job_id,
@@ -211,3 +219,43 @@ async def delete_report(filename: str) -> dict[str, Any]:
 @app.get("/api/health")
 async def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.post("/api/publish-edgeone")
+async def publish_edgeone() -> dict[str, Any]:
+    """Sync reports and redeploy to EdgeOne (local server only)."""
+    from src.service.cloud_sync import sync_all_reports_to_cloud
+
+    synced = sync_all_reports_to_cloud()
+    env = os.environ.copy()
+    env["PAGES_SOURCE"] = "skills"
+    try:
+        proc = subprocess.run(
+            ["edgeone", "pages", "deploy"],
+            cwd=PROJECT_ROOT,
+            env=env,
+            capture_output=True,
+            text=True,
+            timeout=600,
+            check=False,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=500, detail="未安装 edgeone CLI：npm install -g edgeone@latest")
+    except subprocess.TimeoutExpired:
+        raise HTTPException(status_code=504, detail="EdgeOne 部署超时，请稍后重试")
+
+    deploy_url = ""
+    for line in (proc.stdout or "").splitlines():
+        if line.startswith("EDGEONE_DEPLOY_URL="):
+            deploy_url = line.split("=", 1)[1].strip()
+
+    if proc.returncode != 0:
+        detail = (proc.stderr or proc.stdout or "部署失败").strip()[-500:]
+        raise HTTPException(status_code=500, detail=detail)
+
+    return {
+        "ok": True,
+        "synced": synced,
+        "deploy_url": deploy_url,
+        "message": f"已同步 {len(synced)} 份报告并发布到 EdgeOne",
+    }
