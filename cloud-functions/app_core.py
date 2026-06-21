@@ -96,6 +96,12 @@ def create_app(api_prefix: str = "") -> FastAPI:
     async def start_search(req: SearchRequest) -> None:
         raise HTTPException(status_code=503, detail=SERVERLESS_SEARCH_MSG)
 
+    @app.get(_route(api_prefix, "/search"))
+    async def search_get_hint() -> dict[str, str]:
+        return {
+            "detail": "请使用 POST 提交选品任务；云端 Serverless 不支持爬取，请使用本地 python -m src.web",
+        }
+
     @app.get(_route(api_prefix, "/jobs/{job_id}"))
     async def get_job(job_id: str) -> None:
         raise HTTPException(status_code=404, detail="云端环境不支持后台任务，请使用本地服务运行选品")

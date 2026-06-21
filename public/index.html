@@ -252,9 +252,8 @@
 
   <div class="container">
     <div class="deploy-notice">
-      <strong>云端模式：</strong>API 对接
-      <code>amazon-sourcing.vercel.app</code>（勿用预览链接，会 401）。新选品请本地
-      <code>python -m src.web</code>。
+      <strong>云端模式：</strong>历史报告走当前站点 API；新选品请本地
+      <code>python -m src.web</code>。Vercel 预览链接会 401，请用生产域名或本页 EdgeOne 地址。
     </div>
     <div class="card">
       <h2>搜索配置</h2>
@@ -324,11 +323,12 @@
 
     let pollTimer = null;
 
-    // 生产 API（预览域名 *-xxx.vercel.app 有部署保护会 401，勿用）
+    // 生产 API：EdgeOne / Vercel 生产域名走同源；其它静态托管才回退到 Vercel
     const PRODUCTION_API = "https://amazon-sourcing.vercel.app";
     const API_BASE = (() => {
       if (location.hostname === "localhost" || location.hostname === "127.0.0.1") return "";
       if (location.hostname === "amazon-sourcing.vercel.app") return "";
+      if (location.hostname.endsWith(".edgeone.cool")) return "";
       return PRODUCTION_API;
     })();
 
